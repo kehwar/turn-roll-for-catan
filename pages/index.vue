@@ -1,58 +1,50 @@
 <template>
-    <v-app>
-        <v-app-bar app> Roll Turn for Catan </v-app-bar>
-        <v-main>
-            <v-container>
-                <div v-if="state === 'setup'">
-                    <h1>Player Setup</h1>
-                    <div class="input">
-                        <v-text-field
-                            ref="textInput"
-                            v-model="nameInput"
-                            label="Player"
-                            outlined
-                            clearable
-                            hide-details=""
-                            @keypress.enter="onEnter"
-                        >
-                        </v-text-field>
-                        <v-btn x-large @click="onEnter">Enter</v-btn>
-                    </div>
-                    <div class="players">
-                        <h2 v-if="names.length > 0">Players</h2>
-                        <div class="player-chips">
-                            <v-chip
-                                v-for="(name, index) in names"
-                                :key="index"
-                                close
-                                @click:close="removePlayer(index)"
-                                @dblclick="removePlayer(index)"
-                            >
-                                {{ name }}
-                            </v-chip>
-                        </div>
-                    </div>
-                    <v-btn
-                        x-large
-                        :disabled="names.length === 0"
-                        @click="startPlay"
-                        >Play</v-btn
+    <div class="container">
+        <div v-if="state === 'setup'">
+            <h1>Player Setup</h1>
+            <div class="input">
+                <v-text-field
+                    ref="textInput"
+                    v-model="nameInput"
+                    label="Player"
+                    outlined
+                    clearable
+                    hide-details=""
+                    @keypress.enter="onEnter"
+                >
+                </v-text-field>
+                <v-btn x-large @click="onEnter">Enter</v-btn>
+            </div>
+            <div class="players">
+                <h2 v-if="names.length > 0">Players</h2>
+                <div class="player-chips">
+                    <v-chip
+                        v-for="(name, index) in names"
+                        :key="index"
+                        close
+                        @click:close="removePlayer(index)"
+                        @dblclick="removePlayer(index)"
                     >
+                        {{ name }}
+                    </v-chip>
                 </div>
-                <div v-if="state === 'play'">
-                    <h1 class="current-player">{{ names[currentPlayer] }}</h1>
-                    <span class="dice-throw">{{ diceThrow }}</span>
-                    <div class="dice-history">
-                        <span v-for="(dice, index) in diceHistory" :key="index">
-                            {{ dice }}
-                        </span>
-                    </div>
-                    <v-btn x-large @click="nextPlayer">Next</v-btn>
-                    <v-btn x-small @click="state = 'setup'">Setup</v-btn>
-                </div>
-            </v-container>
-        </v-main>
-    </v-app>
+            </div>
+            <v-btn x-large :disabled="names.length === 0" @click="startPlay"
+                >Play</v-btn
+            >
+        </div>
+        <div v-if="state === 'play'">
+            <h1 class="current-player">{{ names[currentPlayer] }}</h1>
+            <span class="dice-throw">{{ diceThrow }}</span>
+            <div class="dice-history">
+                <span v-for="(dice, index) in diceHistory" :key="index">
+                    {{ dice }}
+                </span>
+            </div>
+            <v-btn x-large @click="nextPlayer">Next</v-btn>
+            <v-btn x-small @click="state = 'setup'">Setup</v-btn>
+        </div>
+    </div>
 </template>
 
 <script>
