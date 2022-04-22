@@ -17,8 +17,8 @@ export default {
     components: { PlayerSetup, GameSession },
     data() {
         return {
-            names: ['AAAAA', 'BBBB'],
-            state: 'play',
+            names: [],
+            state: 'setup',
         }
     },
     methods: {
