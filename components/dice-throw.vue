@@ -1,6 +1,6 @@
 <template>
     <div class="dice-throw" @click="emitClick">
-        <svg viewBox="0 0 100 100" height="100%">
+        <svg viewBox="0 0 100 100" width="100%">
             <rect
                 x="1"
                 y="1"

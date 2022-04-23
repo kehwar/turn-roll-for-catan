@@ -61,6 +61,7 @@ export default {
 h1,
 h2 {
     text-align: center;
+    user-select: none;
 }
 
 .player-setup {

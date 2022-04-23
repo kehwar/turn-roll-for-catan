@@ -77,6 +77,7 @@ export default {
 <style scoped>
 h1 {
     text-align: center;
+    user-select: none;
 }
 
 .game-session {
@@ -87,8 +88,7 @@ h1 {
 }
 
 .dice-throw {
-    flex-grow: 1;
-    max-height: 50vh;
+    /* max-height: 50vh; */
 }
 
 .dice-history {
