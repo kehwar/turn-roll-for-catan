@@ -2,6 +2,7 @@
     <div class="game-session">
         <h1 class="current-player" @click="nextPlayer">
             {{ names[currentPlayer] }}
+            <span v-show="timer > 10">({{ timerString }})</span>
         </h1>
         <BigDice
             :number="diceThrow"
@@ -54,10 +55,26 @@ export default {
             currentPlayer: 0,
             diceHistory: [],
             colors: ['#F2C438', '#BF2431'],
+            timer: 0,
+            interval: null,
         }
+    },
+    computed: {
+        timerString() {
+            if (this.timer < 60) return this.timer + '′′'
+            else {
+                return (
+                    Math.floor(this.timer / 60) +
+                    '′ ' +
+                    (this.timer % 60) +
+                    '′′'
+                )
+            }
+        },
     },
     mounted() {
         this.throwDice()
+        this.startTimer()
     },
     methods: {
         throwDice() {
@@ -75,6 +92,7 @@ export default {
             this.saveDiceHistory()
             // Throw new dice
             this.throwDice()
+            this.startTimer()
         },
         saveDiceHistory() {
             this.diceHistory.splice(0, 0, this.diceThrow)
@@ -83,12 +101,22 @@ export default {
         gotoSetup() {
             this.$emit('setup')
         },
+        startTimer() {
+            if (this.interval !== null) {
+                clearInterval(this.interval)
+                this.timer = 0
+            }
+            this.interval = setInterval(() => {
+                this.timer++
+            }, 1000)
+        },
     },
 }
 </script>
 
 <style scoped>
-h1 {
+h1,
+h2 {
     text-align: center;
     user-select: none;
 }
