@@ -1,5 +1,5 @@
 <template>
-    <div class="dice-throw" @click="emitClick">
+    <div class="big-dice" @click="emitClick">
         <svg viewBox="0 0 100 100" width="100%">
             <rect
                 x="1"
@@ -56,7 +56,7 @@ svg {
     user-select: none;
 }
 
-.dice-throw {
+.big-dice {
     margin-inline: auto;
 }
 </style>

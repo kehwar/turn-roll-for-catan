@@ -3,13 +3,13 @@
         <h1 class="current-player" @click="nextPlayer">
             {{ names[currentPlayer] }}
         </h1>
-        <DiceThrow
+        <BigDice
             :number="diceThrow"
             class="dice-throw"
             :surface-color="colors[diceHistory.length % 2]"
             :on-surface-color="colors[(diceHistory.length + 1) % 2]"
             @click="nextPlayer"
-        ></DiceThrow>
+        ></BigDice>
         <div class="buttons">
             <v-btn
                 class="next-button"
@@ -39,9 +39,9 @@
 </template>
 
 <script>
-import DiceThrow from './dice-throw.vue'
+import BigDice from './big-dice.vue'
 export default {
-    components: { DiceThrow },
+    components: { BigDice },
     props: {
         names: {
             type: Array,
