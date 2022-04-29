@@ -6,8 +6,22 @@
         <DiceThrow
             :number="diceThrow"
             class="dice-throw"
+            :surface-color="colors[diceHistory.length % 2]"
+            :on-surface-color="colors[(diceHistory.length + 1) % 2]"
             @click="nextPlayer"
         ></DiceThrow>
+        <div class="buttons">
+            <v-btn
+                class="next-button"
+                x-large
+                color="#F2C335"
+                @click="nextPlayer"
+                >Next</v-btn
+            >
+            <v-btn class="home-button" x-large @click="gotoSetup">
+                <v-icon>mdi-home</v-icon>
+            </v-btn>
+        </div>
         <div
             v-show="diceHistory.length > 0"
             ref="diceHistory"
@@ -21,8 +35,6 @@
                 {{ dice }}
             </span>
         </div>
-        <v-btn x-large @click="nextPlayer">Next</v-btn>
-        <v-btn x-small @click="gotoSetup">Setup</v-btn>
     </div>
 </template>
 
@@ -41,6 +53,7 @@ export default {
             diceThrow: 0,
             currentPlayer: 0,
             diceHistory: [],
+            colors: ['#F2C438', '#BF2431'],
         }
     },
     mounted() {
@@ -81,14 +94,10 @@ h1 {
 }
 
 .game-session {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
     gap: 1rem;
-}
-
-.dice-throw {
-    /* max-height: 50vh; */
 }
 
 .dice-history {
@@ -109,5 +118,16 @@ h1 {
     font-size: 1.5rem;
     user-select: none;
     color: var(--color);
+}
+
+.buttons {
+    display: flex;
+    width: 85%;
+    align-self: center;
+    gap: 1rem;
+}
+
+.buttons > .next-button {
+    flex-grow: 1;
 }
 </style>
