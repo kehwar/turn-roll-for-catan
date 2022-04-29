@@ -81,6 +81,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+    justify-content: center;
 }
 
 .player-chips {
