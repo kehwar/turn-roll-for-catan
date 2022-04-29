@@ -6,9 +6,9 @@
                 y="1"
                 width="98"
                 height="98"
-                stroke="black"
+                :stroke="onSurfaceColor"
                 stroke-width="0.05rem"
-                fill="white"
+                :fill="surfaceColor"
             />
             <text
                 x="50%"
@@ -16,6 +16,9 @@
                 dominant-baseline="central"
                 text-anchor="middle"
                 font-size="5rem"
+                :fill="onSurfaceColor"
+                stroke="white"
+                stroke-width="0.025rem"
             >
                 {{ number }}
             </text>
@@ -29,6 +32,14 @@ export default {
         number: {
             type: Number,
             required: true,
+        },
+        surfaceColor: {
+            type: String,
+            default: '#FFFFFF',
+        },
+        onSurfaceColor: {
+            type: String,
+            default: '#000000',
         },
     },
     methods: {
