@@ -26,7 +26,13 @@
                 {{ name }}
             </v-chip>
         </div>
-        <v-btn x-large :disabled="names.length < 2" @click="emitPlayEvent">
+        <v-btn
+            class="play-button"
+            color="primary"
+            x-large
+            :disabled="names.length < 2"
+            @click="emitPlayEvent"
+        >
             Play
         </v-btn>
     </div>
@@ -67,8 +73,8 @@ h2 {
 .player-setup {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     height: 100%;
+    gap: 1rem;
 }
 
 .player-input {
@@ -82,5 +88,10 @@ h2 {
     flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: center;
+}
+
+.play-button {
+    width: 85%;
+    align-self: center;
 }
 </style>
